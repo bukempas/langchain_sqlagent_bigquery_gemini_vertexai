@@ -1,4 +1,4 @@
-# langchain_sqlagent_bigquery_gemini_vertexai
+# SQL Agent for Bigquery with Gemini through VertexAI
 This repository demonstrates how to use a LangChain SQL agent to query Google Cloud BigQuery using the Gemini Generative AI through Vertex AI.   This allows you to interact with your BigQuery data using natural language, leveraging the power of Gemini's advanced language understanding capabilities.
 
 ## Setup
