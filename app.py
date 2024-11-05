@@ -21,6 +21,7 @@ from langchain.sql_database import SQLDatabase
 from langchain.llms import VertexAI
 from langchain.schema import SystemMessage
 import vertexai
+import streamlit as st
 
 #import generative ai for gemini pro from langchain google ai
 from langchain_google_genai import GoogleGenerativeAI
@@ -49,7 +50,25 @@ from langchain_community.tools.sql_database.tool import (
 # Create the SQL agent
 sql_agent = create_sql_agent(llm=llm, toolkit=toolkit, tools=toolkit.get_tools())
 
-# Example usage with LangChain sql-agent
+# Streamlit app
+st.title("LangChain SQL Agent with BigQuery")
+
+# User input for the query
+user_query = st.text_input("Enter your query:")
+
+# Run the agent and display the output
+if st.button("Run Query"):
+    if user_query:
+        with st.spinner("Processing..."):
+            try:
+                response = agent.run(user_query)
+                st.success(response)
+            except Exception as e:
+                st.error(f"Error: {e}")
+    else:
+        st.warning("Please enter a query.")
+
+# Example usage with LangChain sql-agent without streamlit
 user_question = "What is the average value of temperature reading from the sensor data of table?"
 try:
     response = sql_agent.run(user_question)
